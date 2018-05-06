@@ -31,94 +31,21 @@ public class Piece {
     public void updatePossibleMoves(Location myLoc, string myName, Location[][] board)
     {
         this.possibleMoves.Clear();
-        //TODO: Add checks for other pieces
-        if (myName.Contains("knight"))
-        {
-            getKnightMoves(myLoc, board);
-        }
+        MoveCalculator.getPossibleMoves(this);
     }
 
-    public void getKnightMoves(Location myLoc, Location[][] board)
+    public string getName()
     {
-        int row = myLoc.getRow();
-        int col = myLoc.getColumn();
-        Piece pieceOnSpot;
+        return this.name;
+    }
 
-        if (col - 2 >= 0)
-        {
-            if (row - 1 >= 0)
-            {
-                pieceOnSpot = board[row - 1][col - 2].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row - 1, col - 2));
-                }
-            }
-            if (row + 1 <= 7)
-            {
-                pieceOnSpot = board[row + 1][col - 2].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row + 1, col - 2));
-                }
-            }
-        }
-        if (col - 1 >= 0)
-        {
-            if (row - 2 >= 0)
-            {
-                pieceOnSpot = board[row - 2][col - 1].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row - 2, col - 1));
-                }
-            }
-            if (row + 2 <= 7)
-            {
-                pieceOnSpot = board[row + 2][col - 1].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row + 2, col - 1));
-                }
-            }
-        }
-        if (col + 1 <= 7)
-        {
-            if (row - 2 >= 0)
-            {
-                pieceOnSpot = board[row - 2][col + 1].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row - 2, col + 1));
-                }
-            }
-            if (row + 2 <= 7)
-            {
-                pieceOnSpot = board[row + 2][col + 1].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row + 2, col + 1));
-                }
-            }
-        }
-        if (col + 2 <= 7)
-        {
-            if (row - 1 >= 0)
-            {
-                pieceOnSpot = board[row - 1][col + 2].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row - 1, col + 2));
-                }
-            }
-            if (row + 1 <= 7)
-            {
-                pieceOnSpot = board[row + 1][col + 2].getPieceOnSpot();
-                if (pieceOnSpot == null || !pieceOnSpot.color.Equals(this.color))
-                {
-                    possibleMoves.Add(new Location(row + 1, col + 2));
-                }
-            }
-        }
+    public Location getCurrentLocation()
+    {
+        return currLoc;
+    }
+
+    public string getColor()
+    {
+        return color;
     }
 }
